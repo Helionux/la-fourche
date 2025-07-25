@@ -1,9 +1,11 @@
 "use client"
 
 import Link from "next/link";
-import { title } from "process";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./ui/navigation-menu";
 import { Input } from "./ui/input";
+import { Heart, Menu, Search, User } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { Button } from "./ui/button";
 
 
 const Header = () => {
@@ -117,9 +119,57 @@ const Header = () => {
 
                     <div className="flex-1 max-w-md mx-4 hidden md:block">
                         <div className="relative">
-                            <Input type="search" placeholder="Rechercher un produit..." className="pl-10 pr-4 w-full border-gray-300 focus:border-500 focus:ring-green-500">
-                            </Input>
+                            <Input type="search" placeholder="Rechercher un produit..." className="pl-10 pr-4 w-full border-gray-300 focus:border-500 focus:ring-green-500" />
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                         </div>
+                    </div>
+
+                    {/* SideBar */}
+
+                    <div className="flex items-center space-x-4">
+
+                        {/* Button de Menu Mobile */}
+
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button variant="ghost" size="icon" className="lg:hidden">
+                                    <Menu className="h-5 w-5" />
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="left" className="w-80">
+                                <div className="py-4">
+                                    <h2 className="font-semibold text-lg mb-4">Menu</h2>
+                                    {navigationItems.map((item) => (
+                                        <div key={item.title} className="mb-4">
+                                            <h3 className="font-medium text-gray-800 mb-2">{item.title}</h3>
+                                            <ul className="space-y-1 ml-4">
+                                                {item.items.map((subItem) => (
+                                                    <li key={subItem}>
+                                                        <Link href={`/category/${subItem.toLocaleLowerCase().replace(/\s+/g, '-')}`}>
+                                                            {subItem}
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
+                            </SheetContent>
+                        </Sheet>
+
+                        {/* Bar de Recherche Mobile */}
+
+                        <Button variant="ghost" size="icon" className="md:hidden">
+                            <Search className="h-5 w-5" />
+                        </Button>
+
+                        <Button variant="ghost" size="icon" className="hidden sm:flex">
+                                <Heart className="h-5 w-5" />
+                        </Button>
+
+                        <Button variant="ghost" size="icon">
+                            <User className="h-5 w-5" />
+                        </Button>
                     </div>
 
                 </div>

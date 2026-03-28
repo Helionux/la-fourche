@@ -119,7 +119,7 @@ const Header = () => {
 
                     <div className="flex-1 max-w-md mx-4 hidden md:block">
                         <div className="relative">
-                            <Input type="search" placeholder="Rechercher un produit..." className="pl-10 pr-4 w-full border-gray-300 focus:border-500 focus:ring-green-500" />
+                            {/* <Input type="search" placeholder="Rechercher un produit..." className="pl-10 pr-4 w-full border-gray-300 focus:border-500 focus:ring-green-500" /> */}
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                         </div>
                     </div>
